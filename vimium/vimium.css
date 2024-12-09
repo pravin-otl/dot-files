@@ -1,0 +1,150 @@
+:root {
+
+	--accent: #8758FF;
+	--text: #ffffff;
+	--background: #000000;
+
+	/** Calcurated Palette */
+	--text-secondary: color-mix(in srgb, var(--text) 60%, transparent);
+	--text-tertiary: color-mix(in srgb, var(--text) 35%, transparent);
+	--background-selected: #000000;
+	--border-primary: var(--accent);
+	--box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+}
+
+@keyframes show {
+	0% {
+		transform: translateY(50px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+#vimiumHintMarkerContainer {
+	.internalVimiumHintMarker {
+		padding: 3px 3px;
+		background: var(--background);
+		border: 1px solid var(--accent);
+	}
+
+	span {
+		color: var(--text);
+		text-shadow: none;
+	}
+
+	.matchingCharacter {
+		opacity: 0.4;
+
+		~ span {
+			color: var(--accent);
+		}
+	}
+}
+
+#vomnibar {
+	background: var(--background);
+	animation: show 200ms cubic-bezier(0, 0, 0.2, 1) forwards;
+
+	.vomnibarSearchArea {
+		padding: 10px 30px;
+		color: var(--text);
+		background: transparent;
+		border: 1px solid var(--accent);
+		border-radius: 5px;
+	}
+
+	#vomnibarInput {
+		padding: 0;
+		color: var(--text);
+		background: transparent;
+		box-shadow: none;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		background: transparent;
+	}
+
+	li {
+		padding: 10px;
+		border-radius: 5px;
+
+		.vomnibarTopHalf,
+		.vomnibarBottomHalf {
+			display: flex;
+		}
+
+		.vomnibarTitle,
+		.vomnibarSource {
+			color: var(--text-secondary);
+		}
+
+		.vomnibarUrl {
+			overflow: hidden;
+			color: var(--text-tertiary);
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.vomnibarMatch {
+			color: var(--accent);
+			font-weight: normal;
+		}
+
+		.vomnibarTitle .vomnibarMatch {
+			color: var(--accent);
+		}
+
+		&.vomnibarSelected {
+			background-color: var(--background-selected);
+			border: 1px solid var(--accent);
+			border-radius: 5px;
+		}
+	}
+}
+
+div.vimiumHUD {
+	background: var(--background);
+	border: none;
+	color: var(--accent);
+
+	.hud-find {
+		display: flex;
+	}
+
+	span#hud-find-input {
+		position: relative;
+		width: 100%;
+		color: var(--text);
+
+		&::before {
+			position: sticky;
+			left: 0;
+			padding-right: 4px;
+			color: var(--text-secondary);
+			background: linear-gradient(
+			90deg,
+			var(--background) 0%,
+			var(--background) 50%,
+			transparent 100%
+			);
+		}
+	}
+
+	#hud-match-count {
+		flex-shrink: 0;
+		float: none;
+		padding-left: 4px;
+	}
+
+	.hud-find,
+	.vimiumHUDSearchArea {
+		background-color: transparent;
+		border: var(--accent);
+	}
+}
